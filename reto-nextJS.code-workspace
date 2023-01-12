@@ -1,0 +1,30 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "actionButtons": {
+            "defaultColor": "#ff0034", // Can also use string color names.
+            "loadNpmCommands": false, // Disables automatic generation of actions for npm commands.
+            "reloadButton": "♻️", // Custom reload button text or icon (default ↻). null value enables automatic reload on configuration change
+            "commands": [
+                {
+                    "cwd": ".", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                    "name": "Install",
+                    "color": "white",
+                    "singleInstance": true,
+                    "command": "npm install", // This is executed in the terminal.
+                },
+                {
+                    "cwd": ".", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                    "name": "Run Cargo",
+                    "color": "white",
+                    "singleInstance": true,
+                    "command": "npm run dev", // This is executed in the terminal.
+                }
+            ]
+        }
+    }
+}
