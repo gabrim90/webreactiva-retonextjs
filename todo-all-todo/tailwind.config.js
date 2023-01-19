@@ -5,7 +5,14 @@ module.exports = {
       "./app/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
-      extend: {},
+      minHeight: {
+        '1/2': '50%',
+        '300': '300px',
+        '500': '500px'
+      },
+      extend: {
+        
+      },
     },
     plugins: [],
   }

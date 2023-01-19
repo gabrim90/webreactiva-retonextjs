@@ -18,8 +18,8 @@
                     "command": "npm install", // This is executed in the terminal.
                 },
                 {
-                    "cwd": ".", // Terminal initial folder ${workspaceFolder} and os user home as defaults
-                    "name": "Run Cargo",
+                    "cwd": "${workspaceFolder}/todo-all-todo", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                    "name": "Run dev",
                     "color": "white",
                     "singleInstance": true,
                     "command": "npm run dev", // This is executed in the terminal.

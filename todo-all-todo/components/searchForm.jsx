@@ -13,8 +13,9 @@ async function postData(url = '', data = {}) {
 export default function SearchForm(){
   const [inputText, setInputText] = useState("")
   const [responseText, setResponseText] = useState("")
-  const [submittedLoading, setSubmittedLoading] = useState(false)
   const [ideasList, setIdeasList] = useState([])
+  const [submittedLoading, setSubmittedLoading] = useState(false)
+  const [textValidationError, setTextValidationError] = useState(false)
   
   
   const handleInputChange = (event)=>{
@@ -23,8 +24,16 @@ export default function SearchForm(){
       
   const handleSubmit = (event)=>{
         console.log(`Request text: ${inputText}`)
-        setSubmittedLoading(true)
-        requestOpenAI()
+        if(inputText.length>=10){
+          setTextValidationError(false)
+          setSubmittedLoading(true)
+          requestOpenAI()
+        }else{
+          setTextValidationError(true)
+
+        }
+        
+
     }
   const requestOpenAI = async () =>{
     postData('/api/openai', { promptText: inputText })
@@ -50,25 +59,41 @@ export default function SearchForm(){
   
 
   return(
-    <section>
+    <section className="w-full max-w-6xl mx-auto my-2">
       <div className="grid grid-cols-5 py-2">
-        <input type="text" placeholder="Escribe aquí tu sugerencia" className="col-span-4 px-2 m-2 border-2 rounded-md" value={inputText} onChange={handleInputChange}/>
-        <button type="submit" className="px-2 m-2 border-2 rounded-md" onClick={handleSubmit}>Enviar</button>
+        <input type="text" placeholder="Escribe aquí tu sugerencia" className="col-span-4 px-2 m-2 border-2 rounded-md" value={inputText} onChange={handleInputChange} disabled={submittedLoading}/>
+        <button type="submit" className="p-2 m-2 border-2 rounded-md bg-red-600 text-white font-bold" onClick={handleSubmit} disabled={submittedLoading} >Enviar</button>
     </div>
     {submittedLoading && 
-        <div className="p-4 m-4">Los oompa loompa están procesando tu petición para {inputText}</div>
+        <div className="m-4"><p>Los oompa loompa están procesando tu petición para <span className="font-bold">{inputText}</span></p></div>
+    }
+    {textValidationError && 
+        <div className="m-4 text-red-600 font-bold"><p>Debes introducir un texto más largo para poder hacer la petición</p></div>
     }
 
-<div className="m-4">
-
+<div className="m-4 min-h-500">
+        {ideasList.length > 0 && 
+        <div className="m-4">
+          <p className="text-xl">
+          Estos son los pasos sugeridos para <span className="font-bold">{inputText}</span></p></div>}
         {ideasList.map(item => 
-                <div className="flex items-center mb-4 w-full">
-                <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <div className="flex mb-4 w-full items-start">
+                <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pt-1" />
                 <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900">{item}</label>
                 </div>
             
-            )}
+            )}          
 </div>
+{ideasList.length > 0 && 
+        <div className="m-4">
+          <p className="text-xl">
+        Puedes guardar esta lista dándole un nombre y pulsando en guardar</p>
+        <div className="grid grid-cols-5 py-2 my-2">
+        <input type="text" placeholder="Nombre de la lista " className="col-span-4 px-2 m-2 border-2 rounded-md" />
+        <button type="submit" className="p-2 m-2 border-2 rounded-md bg-green-600 text-white font-bold"  >Guardar lista</button>
+    </div>
+        
+        </div>}  
   </section>
   )
 }
