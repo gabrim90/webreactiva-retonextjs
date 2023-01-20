@@ -59,41 +59,48 @@ export default function SearchForm(){
   
 
   return(
-    <section className="w-full max-w-6xl mx-auto my-2">
+    <section className="w-full max-w-6xl mx-auto">
       <div className="grid grid-cols-5 py-2">
         <input type="text" placeholder="Escribe aquí tu sugerencia" className="col-span-4 px-2 m-2 border-2 rounded-md" value={inputText} onChange={handleInputChange} disabled={submittedLoading}/>
         <button type="submit" className="p-2 m-2 border-2 rounded-md bg-red-600 text-white font-bold" onClick={handleSubmit} disabled={submittedLoading} >Enviar</button>
     </div>
     {submittedLoading && 
-        <div className="m-4"><p>Los oompa loompa están procesando tu petición para <span className="font-bold">{inputText}</span></p></div>
+        <div className="my-4 px-1 text-lg"><p>🤖 El ChatBotGPT están procesando tu petición para <span className="font-bold">{inputText}</span></p></div>
     }
     {textValidationError && 
         <div className="m-4 text-red-600 font-bold"><p>Debes introducir un texto más largo para poder hacer la petición</p></div>
     }
 
-<div className="m-4">
-        {ideasList.length > 0 && 
-        <div className="m-4">
-          <p className="text-xl">
-          Estos son los pasos sugeridos para <span className="font-bold">{inputText}</span></p></div>}
-        {ideasList.map(item => 
+
+{ideasList.length > 0 && 
+  <>
+              <hr className="my-4 border-b-1 border-indigo-500"/>
+
+<div className="mx-2 my-4">
+          <p className="text-lg">👉🏼 Estos son los pasos sugeridos para <span className="font-bold">{inputText}</span></p></div>
+          <div className="px-4">
+          {ideasList.map(item => 
                 <div className="flex mb-4 w-full items-start">
-                <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pt-1" />
+                <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 mt-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pt-1" />
                 <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900">{item}</label>
                 </div>
             
-            )}          
-</div>
-{ideasList.length > 0 && 
+            )} 
+            </div>
+              <hr className="my-4 border-b-1 border-indigo-500"/>
+
         <div className="m-4">
-          <p className="text-xl">
-        Puedes guardar esta lista dándole un nombre y pulsando en guardar</p>
+
+          <p className="text-lg">💾 Puedes guardar esta lista dándole un nombre y pulsando en guardar</p>
         <div className="grid grid-cols-5 py-2 my-2">
         <input type="text" placeholder="Nombre de la lista " className="col-span-4 px-2 m-2 border-2 rounded-md" />
         <button type="submit" className="p-2 m-2 border-2 rounded-md bg-green-600 text-white font-bold"  >Guardar lista</button>
     </div>
         
-        </div>}  
+        </div>
+        
+        </>
+        }  
   </section>
   )
 }
