@@ -11,6 +11,7 @@ export default function HomePage(props){
     return (
         <>
             <PageDescription title="¡Bienvenido!" texts={textos} />
+            <button className="p-2 my-16 px-6 mx-auto block border-2 rounded-md bg-red-600 text-white font-bold"><a href="/create" >Empezar</a></button>
         </>
     )
 }

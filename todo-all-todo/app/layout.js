@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
             <main role="main" className="w-full h-full flex-grow p-3 overflow-auto">
             {children}
             </main>
-            <div className="sm:w-1/2 lg:w-1/3 w-full flex-shrink flex-grow-0 p-4">
+            <div className="sm:w-1/2 lg:w-1/2 w-full flex-shrink flex-grow-0 p-4">
               Últimas preguntas realizadas
             </div>
         </div>

@@ -1,9 +1,9 @@
-import SearchForm from "../../components/searchForm"
-
+import PageDescription from "../../components/pageDescription"
 export default function MainPage() {
+  const textos = []
   return (
       <>
-      <p className="text-2xl">Aquí verás tus To-Do</p>
+      <PageDescription title="Aquí están tus listas creadas" texts={textos} />
       </>      
     )
 }
