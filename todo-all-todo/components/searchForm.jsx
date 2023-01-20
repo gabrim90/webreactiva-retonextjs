@@ -71,7 +71,7 @@ export default function SearchForm(){
         <div className="m-4 text-red-600 font-bold"><p>Debes introducir un texto más largo para poder hacer la petición</p></div>
     }
 
-<div className="m-4 min-h-500">
+<div className="m-4">
         {ideasList.length > 0 && 
         <div className="m-4">
           <p className="text-xl">

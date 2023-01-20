@@ -11,7 +11,7 @@
             "reloadButton": "♻️", // Custom reload button text or icon (default ↻). null value enables automatic reload on configuration change
             "commands": [
                 {
-                    "cwd": ".", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                    "cwd": "${workspaceFolder}/todo-all-todo", // Terminal initial folder ${workspaceFolder} and os user home as defaults
                     "name": "Install",
                     "color": "white",
                     "singleInstance": true,
