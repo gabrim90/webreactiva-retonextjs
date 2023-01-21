@@ -10,13 +10,27 @@
   },
   "dependencies": {
     "@next/font": "13.1.1",
+    "@supabase/auth-helpers-nextjs": "^0.5.4",
+    "@supabase/auth-helpers-react": "^0.3.1",
+    "@supabase/auth-ui-react": "^0.2.6",
+    "@supabase/supabase-js": "^2.4.0",
     "next": "13.1.1",
+    "openai": "^3.1.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
     "autoprefixer": "^10.4.13",
+    "eslint": "^8.32.0",
+    "eslint-config-standard-with-typescript": "^27.0.1",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.0",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.4"
   }
 }
