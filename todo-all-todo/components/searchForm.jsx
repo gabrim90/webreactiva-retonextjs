@@ -27,7 +27,7 @@ export default function SearchForm(){
     }
       
   const handleSubmit = (event)=>{
-        console.log(`Request text: ${inputText}`)
+        // // console.log(`Request text: ${inputText}`)
         if(inputText.length>=10){
           setTextValidationError(false)
           setSubmittedLoading(true)
@@ -43,7 +43,7 @@ export default function SearchForm(){
   const requestOpenAI = async () =>{
     postData('/api/openai', { promptText: inputText })
     .then((data) => {
-        console.log(data)
+        // // console.log(data)
         setResponseText(data.response)
         setSubmittedLoading(false)
 
@@ -51,7 +51,7 @@ export default function SearchForm(){
   }
   const  handleSaveList = async (event)=>{
   
-    console.log(`title list: ${titleList}`)
+    // // console.log(`title list: ${titleList}`)
     const listData = {
       title: titleList,
       points: ideasList
@@ -59,7 +59,7 @@ export default function SearchForm(){
 
     postData('/api/lists', { list: listData })
     .then((data) => {
-        console.log(data)
+        // // console.log(data)
   
     });
     

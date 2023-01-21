@@ -1,11 +1,36 @@
 import createClient from '../utils/supabase-server'
+import NavLink from './NavLink'
 
+const menu = [
+    {
+        title: 'Inicio',
+        path: '/'
+    },
+    {
+        title: 'Crear To-Do',
+        path: '/create'
+    },
+    {
+        title: 'Mis listas creadas',
+        path: '/lists'
+    }
+]
 
 export default async function NavMenu(props){
+
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
 
+    const navLinks = menu.map((item,index)=>{
+        return(
+            <li key={index} className="my-2 underline">
 
+                <NavLink path={item.path} title={item.title}/>
+            </li>
+
+        )
+
+    })
 
     return(
 
@@ -14,9 +39,7 @@ export default async function NavMenu(props){
             <hr className="my-4 border-b-1 border-indigo-500"/>
 
             <ul className="flex sm:flex-col overflow-hidden content-center justify-between">                    
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/create">Crear To-Do</a></li>
-            <li><a href="/view" >Ver mis To-Dos</a></li>
+            {navLinks}
             </ul>
         </div>
     )

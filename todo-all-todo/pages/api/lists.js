@@ -6,13 +6,13 @@ export default async function handler(req, res) {
   const {
     data: { session },
   } = await supabase.auth.getSession()
-    console.log({session:session})
+    // console.log({session:session})
     if (req.method === 'POST') {
         
 
         const jsonData = JSON.parse(req.body)
-        console.log(jsonData.list.title)
-        console.log(jsonData.list.points)
+        // console.log(jsonData.list.title)
+        // console.log(jsonData.list.points)
         const { error } = await supabase
         .from('lists')
         .insert({  title: jsonData.list.title, points: jsonData.list.points, user_id: session.user.id })

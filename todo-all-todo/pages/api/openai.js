@@ -8,16 +8,16 @@ const openai = new OpenAIApi(configuration);
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        console.log(req.body)
+        // console.log(req.body)
         const promptText = `${JSON.parse(req.body).promptText}. Creame una lista de pasos.`
 
-        console.log("🚀 ~ file: openai.js:14 ~ handler ~ promptText", promptText)
+        // console.log("🚀 ~ file: openai.js:14 ~ handler ~ promptText", promptText)
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: promptText,
             max_tokens: 2000
             });
-            console.log(completion.data.choices[0].text);
+            // console.log(completion.data.choices[0].text);
     
     
         res.status(200).json({ response: completion.data.choices[0].text})
