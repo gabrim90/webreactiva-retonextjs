@@ -1,5 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react"
+import createClient from '../utils/supabase-browser'
+
 async function postData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -11,7 +13,9 @@ async function postData(url = '', data = {}) {
 
 
 export default function SearchForm(){
+
   const [inputText, setInputText] = useState("")
+  const [titleList, setTitleList] = useState("")
   const [responseText, setResponseText] = useState("")
   const [ideasList, setIdeasList] = useState([])
   const [submittedLoading, setSubmittedLoading] = useState(false)
@@ -28,6 +32,7 @@ export default function SearchForm(){
           setTextValidationError(false)
           setSubmittedLoading(true)
           requestOpenAI()
+          setTitleList(`ToDos list sobre ${inputText}`)
         }else{
           setTextValidationError(true)
 
@@ -44,7 +49,22 @@ export default function SearchForm(){
 
     });
   }
+  const  handleSaveList = async (event)=>{
+  
+    console.log(`title list: ${titleList}`)
+    const listData = {
+      title: titleList,
+      points: ideasList
+    }
 
+    postData('/api/lists', { list: listData })
+    .then((data) => {
+        console.log(data)
+  
+    });
+    
+
+}
   useEffect(() => {
     if(responseText) {
         
@@ -80,7 +100,7 @@ export default function SearchForm(){
           <p className="text-lg">👉🏼 Estos son los pasos sugeridos para <span className="font-bold">{inputText}</span></p></div>
           <div className="px-4">
           {ideasList.map(item => 
-                <div className="flex mb-4 w-full items-start">
+                <div  className="flex mb-4 w-full items-start">
                 <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 mt-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 pt-1" />
                 <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900">{item}</label>
                 </div>
@@ -93,8 +113,8 @@ export default function SearchForm(){
 
           <p className="text-lg">💾 Puedes guardar esta lista dándole un nombre y pulsando en guardar</p>
         <div className="grid grid-cols-5 py-2 my-2">
-        <input type="text" placeholder="Nombre de la lista " className="col-span-4 px-2 m-2 border-2 rounded-md" />
-        <button type="submit" className="p-2 m-2 border-2 rounded-md bg-green-600 text-white font-bold"  >Guardar lista</button>
+        <input type="text" placeholder="Nombre de la lista " value={titleList} className="col-span-4 px-2 m-2 border-2 rounded-md" onChange={event => setTitleList(event.target.value)} />
+        <button type="submit" className="p-2 m-2 border-2 rounded-md bg-green-600 text-white font-bold"  onClick={handleSaveList} >Guardar lista</button>
     </div>
         
         </div>

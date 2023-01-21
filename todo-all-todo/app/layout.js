@@ -1,5 +1,5 @@
 import 'server-only'
-
+import CreatedLists from '../components/createdLists'
 
 import Head from "./head"
 import Header from "../components/header"
@@ -46,9 +46,9 @@ export default async function RootLayout({ children }) {
             </main>
             <div className="lg:w-1/2 w-full flex-shrink flex-grow-0 p-3">
               <div className="sticky top-0 w-full">
-                <p className='text-2xl'>Últimas listas generadas</p>
+                <p className='text-2xl'>Últimas ToDos generadas</p>
                 <hr className="my-4 border-b-1 border-indigo-500"/>
-
+                <CreatedLists />
                 <ul className="flex sm:flex-col overflow-hidden content-center justify-between">                    
                 <li></li>
                 </ul>

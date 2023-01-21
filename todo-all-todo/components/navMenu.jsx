@@ -1,9 +1,11 @@
 import createClient from '../utils/supabase-server'
 
+
 export default async function NavMenu(props){
     const supabase = createClient()
-    const { data, error } = await supabase.auth.refreshSession()
-    const { session, user } = data
+    const { data: { user } } = await supabase.auth.getUser()
+
+
 
     return(
 
