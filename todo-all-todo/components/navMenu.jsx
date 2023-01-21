@@ -1,5 +1,5 @@
 import createClient from '../utils/supabase-server'
-import NavLink from './NavLink'
+import NavLink from './navLink'
 
 const menu = [
     {
