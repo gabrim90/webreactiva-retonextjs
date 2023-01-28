@@ -19,5 +19,9 @@
         "react"
     ],
     "rules": {
-    }
+        "extends": "@babel/eslint-parser",
+        "rules": {
+          "requireConfigFile": "off"
+        }
+      }
 }
