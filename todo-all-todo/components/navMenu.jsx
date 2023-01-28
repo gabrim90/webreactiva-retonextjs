@@ -23,9 +23,8 @@ export default async function NavMenu(props){
 
     const navLinks = menu.map((item,index)=>{
         return(
-            <li key={index} className="my-2 underline">
-
-                <NavLink path={item.path} title={item.title}/>
+            <li key={index} className="my-1 ">
+                ☑️ <NavLink path={item.path} title={item.title}/>
             </li>
 
         )
