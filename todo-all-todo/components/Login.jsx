@@ -9,12 +9,14 @@ export default function Login() {
   const handleLogin = async () => {
     setMailSended(true)
 
-    const { data, error } = await supabase.auth.signInWithOtp({
-        email: userEmail,
-        options: {
-          emailRedirectTo: 'http://localhost:3000'
-        }
-      })    
+    let loginData = {email: userEmail}
+    if(process.env!=="production"){
+      loginData.options= {
+        emailRedirectTo: 'http://localhost:3000'
+      }
+    }
+
+    const { data, error } = await supabase.auth.signInWithOtp(loginData)    
     if (error) {
       // console.log({ error })
       setMailSended(false)
