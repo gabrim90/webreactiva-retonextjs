@@ -22,13 +22,13 @@ export default async function CreatedLists(props){
 
     const createdLists = itemsList.map((list,index) => {
             return (
-                <li key={index}>
-                    <a href={`/lists/${list.id}`}>{list.title}</a>
+                <li key={index} className="my-2" >
+                    🗒  <a className="hover:underline hover:underline-offset-1" href={`/lists/${list.id}`} title={list.title}>{list.title}</a>
                 </li>
             )
         })
 
 
-    return (<>{createdLists}</>)
+    return (<ul>{createdLists}</ul>)
 
 }
