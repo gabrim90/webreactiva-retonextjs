@@ -10,7 +10,7 @@ export default function Login() {
     setMailSended(true)
 
     let loginData = {email: userEmail}
-    if(process.env!=="production"){
+    if(process.env.NODE_ENV.trim() === "production"){
       loginData.options= {
         emailRedirectTo: 'http://localhost:3000'
       }
