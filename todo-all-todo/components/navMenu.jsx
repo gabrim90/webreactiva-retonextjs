@@ -3,10 +3,6 @@ import NavLink from './navLink'
 
 const menu = [
     {
-        title: 'Inicio',
-        path: '/'
-    },
-    {
         title: 'Crear To-Do',
         path: '/create'
     },
@@ -23,8 +19,8 @@ export default async function NavMenu(props){
 
     const navLinks = menu.map((item,index)=>{
         return(
-            <li key={index} className="my-1 ">
-                ☑️ <NavLink path={item.path} title={item.title}/>
+            <li key={index} className="my-1 w-full">
+                <NavLink path={item.path} title={item.title}/>
             </li>
 
         )
@@ -37,7 +33,7 @@ export default async function NavMenu(props){
             <p className='text-2xl'>Hola {user?.email}</p>
             <hr className="my-4 border-b-1 border-indigo-500"/>
 
-            <ul className="flex sm:flex-col overflow-hidden content-center justify-between">                    
+            <ul className="flex flex-col overflow-hidden content-center justify-between">                    
             {navLinks}
             </ul>
         </div>

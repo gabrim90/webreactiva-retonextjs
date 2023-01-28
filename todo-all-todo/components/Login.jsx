@@ -10,7 +10,10 @@ export default function Login() {
     setMailSended(true)
 
     const { data, error } = await supabase.auth.signInWithOtp({
-        email: userEmail
+        email: userEmail,
+        options: {
+          emailRedirectTo: 'http://localhost:3000'
+        }
       })    
     if (error) {
       // console.log({ error })
