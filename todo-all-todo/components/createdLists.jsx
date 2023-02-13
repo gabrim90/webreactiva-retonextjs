@@ -1,25 +1,24 @@
-import createClient from '../utils/supabase-server'
 
-const  fetchList = async (userId="", limit=100) =>{
-    const supabase = createClient()
-
-    if(userId!==""){
-        const { data, error } = await supabase.from('lists').select().eq('user_id',userId).order('created_at', { ascending: false }).limit(limit)
-        return data
-    }else{
-        const { data, error } = await supabase.from('lists').select().order('created_at', { ascending: false }).limit(limit)
-        return data
-    }
+export async function fetchItems(limit="",userId="") {
 
 
+  const response = await fetch(`http://localhost:3000/api/lists?limit=${limit}&userId=${userId}`, {
+    next: { revalidate: 60 }
+  });
+  const data = await response.json();
+  return data;
 }
 
 
-
 export default async function CreatedLists(props){
-    const userId = props.userId !== undefined ? props.userId : ""
-    const itemsList = await fetchList(userId, props.limit)
 
+
+   const userId = props.userId !== undefined ? props.userId : ""
+
+    const itemsList = await fetchItems(props.limit,userId)
+
+    
+    if(itemsList){
     const createdLists = itemsList.map((list,index) => {
             return (
                 <li key={index} className="my-2" >
@@ -30,5 +29,7 @@ export default async function CreatedLists(props){
 
 
     return (<ul>{createdLists}</ul>)
-
+    }else{
+        return(<></>)
+    }
 }

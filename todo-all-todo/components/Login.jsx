@@ -10,11 +10,9 @@ export default function Login() {
     setMailSended(true);
 
     let loginData = { email: userEmail };
-    // if (process.env.enviroment.trim() !== "production") {
-    //   loginData.options = {
-    //     emailRedirectTo: "http://localhost:3000",
-    //   };
-    // }
+    loginData.options = {
+      emailRedirectTo: "http://localhost:3000",
+    };
 
     const { data, error } = await supabase.auth.signInWithOtp(loginData);
     if (error) {
