@@ -58,7 +58,7 @@ export default function Login() {
                   />
                 </div>
                 <button
-                  className="w-full p-2 border-2 rounded-md bg-green-600 text-white font-bold"
+                  className="w-full p-2 border-2 rounded-md bg-indigo-600 text-white font-bold"
                   onClick={handleLogin}
                 >
                   Acceder

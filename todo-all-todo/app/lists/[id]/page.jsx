@@ -2,16 +2,28 @@ import PageDescription from "../../../components/pageDescription"
 import createClient  from "../../../utils/supabase-server"
 import PointsList from "../../../components/pointsList"
 
+
+export async function fetchList(listId="") {
+  const endpoint = `${process.env.HOST}/api/detail/${listId}`
+  
+//  console.log("🚀 ~ file: layout.jsx:6 ~ fetchList ~ endpoint", endpoint)
+  const response = await fetch(endpoint, { cache: 'no-store' });
+  const data = await response.json();
+//  console.log("🚀 ~ file: layout.jsx:9 ~ fetchList ~ data", data)
+  return data;
+}
+
+
 export default async function ListDetail({params}) {
-  const supabase = createClient()
   const { id } = params
-  const { data, error } = await supabase.from('lists').select().eq('id',id)
   const textos = []
-  const currentList = data[0]
+  const fetchedData = await fetchList(id)
+  const list = fetchedData[0]
   return (
       <>
-        <PageDescription title={currentList.title} texts={textos} />
-        <PointsList pointsList={currentList.points} />
+        <PageDescription title={list.title} texts={textos} titleSize="text-xl" />
+        <PointsList pointsList={list.points} /> 
+
       </>
     )
 }

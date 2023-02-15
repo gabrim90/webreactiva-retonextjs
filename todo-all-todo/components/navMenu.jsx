@@ -33,7 +33,7 @@ export default async function NavMenu(props){
             <p className='text-2xl'>Hola {user?.email}</p>
             <hr className="my-4 border-b-1 border-indigo-500"/>
 
-            <ul className="flex flex-col overflow-hidden content-center justify-between">                    
+            <ul className="flex flex-row md:flex-col overflow-hidden content-center justify-between">                    
             {navLinks}
             </ul>
         </div>

@@ -1,4 +1,5 @@
 import PageDescription from "../components/pageDescription"
+import Link from "next/link";
 
 
 export default function HomePage(props){
@@ -14,7 +15,7 @@ export default function HomePage(props){
     return (
         <>
             <PageDescription title="¡Bienvenido!" texts={textos} />
-            <button className="p-2 my-16 px-6 mx-auto block border-2 rounded-md bg-red-600 text-white font-bold"><a href="/create" >Empezar</a></button>
+            <Link href={"/create"}><button className="p-2 my-16 px-6 mx-auto block border-2 rounded-md bg-indigo-600 text-white font-bold">Empezar</button></Link>
         </>
     )
 }
