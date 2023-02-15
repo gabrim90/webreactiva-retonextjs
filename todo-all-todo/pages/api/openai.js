@@ -11,7 +11,7 @@ export default async function handler(req, res) {
         // console.log(req.body)
         const promptText = `${JSON.parse(req.body).promptText}. Creame una lista de pasos.`
 
-        // console.log("🚀 ~ file: openai.js:14 ~ handler ~ promptText", promptText)
+        console.log("🚀 ~ file: openai.js:14 ~ handler ~ promptText", promptText)
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: promptText,

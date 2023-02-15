@@ -1,4 +1,5 @@
 export default function PageDescription(props) {
+    const titleSize = props.titleSize !== undefined ? props.titleSize : "text-2xl"
 
     const mappedTexts = props.texts.map((text, index) => {
       return (
@@ -10,7 +11,7 @@ export default function PageDescription(props) {
 
     return (
         <>
-            <h1 className="text-2xl mb-4 px-1">{props.title}</h1>
+            <h1 className={`${titleSize} mb-4 px-1`}  >{props.title}</h1>
             <hr className="my-4 border-b-1 border-indigo-500"/>
             {mappedTexts}
         </>

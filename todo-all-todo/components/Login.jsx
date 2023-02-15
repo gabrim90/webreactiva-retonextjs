@@ -10,11 +10,9 @@ export default function Login() {
     setMailSended(true);
 
     let loginData = { email: userEmail };
-    // if (process.env.enviroment.trim() !== "production") {
-    //   loginData.options = {
-    //     emailRedirectTo: "http://localhost:3000",
-    //   };
-    // }
+    // loginData.options = {
+    //   emailRedirectTo: "http://localhost:3000",
+    // };
 
     const { data, error } = await supabase.auth.signInWithOtp(loginData);
     if (error) {
@@ -60,7 +58,7 @@ export default function Login() {
                   />
                 </div>
                 <button
-                  className="w-full p-2 border-2 rounded-md bg-green-600 text-white font-bold"
+                  className="w-full p-2 border-2 rounded-md bg-indigo-600 text-white font-bold"
                   onClick={handleLogin}
                 >
                   Acceder

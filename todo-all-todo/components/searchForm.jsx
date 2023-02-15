@@ -5,7 +5,7 @@ import createClient from "../utils/supabase-browser";
 async function postData(url = "", data = {}) {
   // Default options are marked with *
   const response = await fetch(url, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    method: "POST", 
     body: JSON.stringify(data), // body data type must match "Content-Type" header
   });
   return response.json(); // parses JSON response into native JavaScript objects
@@ -17,6 +17,7 @@ const waitingTextsList = [
   "👵🏼 La paciencia es amarga, pero su fruto es dulce... o algo así decía mi abuela",
   "🤺 Ten fé, pequeño padawan...",
   "🖥 Este tiempo lo ibas a desperdiciar igual delante de la pantalla, así que no te muevas...",
+  "🤨 Ya va, ya va... "
 ];
 
 export default function SearchForm() {
@@ -57,6 +58,9 @@ export default function SearchForm() {
       setTimeout(() => {
         setWaitingTextsIndex(5);
       }, 16000);
+      setTimeout(() => {
+        setWaitingTextsIndex(6);
+      }, 20000);
 
       requestOpenAI();
       setTitleList(`ToDos list sobre ${inputText}`);
@@ -65,13 +69,14 @@ export default function SearchForm() {
     }
   };
   const requestOpenAI = async () => {
-    postData("/api/openai", { promptText: inputText }).then((data) => {
+    postData(`/api/openai`, { promptText: inputText }).then((data) => {
       // // console.log(data)
       setResponseText(data.response);
       setSubmittedLoading(false);
       setWaitingTextsIndex(0);
     });
   };
+
   const handleSaveList = async (event) => {
     // // console.log(`title list: ${titleList}`)
     const listData = {
@@ -113,7 +118,7 @@ export default function SearchForm() {
         />
         <button
           type="submit"
-          className="p-2 m-2 border-2 rounded-md bg-red-600 text-white font-bold"
+          className="p-2 m-2 border-2 rounded-md bg-indigo-600 text-white font-bold disabled:bg-indigo-100"
           onClick={handleSubmit}
           disabled={submittedLoading}
         >
@@ -215,7 +220,7 @@ export default function SearchForm() {
               />
               <button
                 type="submit"
-                className="p-2 m-2 border-2 rounded-md bg-green-600 text-white font-bold"
+                className="p-2 m-2 border-2 rounded-md bg-indigo-900 text-white font-bold"
                 onClick={handleSaveList}
               >
                 Guardar lista

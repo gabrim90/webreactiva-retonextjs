@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function NavLink(props) {
+  let isDetail = false
   const pathname = usePathname();
 
   let isCurrent = false;
@@ -15,13 +16,13 @@ export default function NavLink(props) {
   return (
     <>
       {isCurrent && (
-        <span className="text-l   underline text-red-800 font-medium	">
+        <span className="text-l   underline text-indigo-900 font-medium	">
           {props.title}
         </span>
       )}
       {!isCurrent && (
         <Link href={props.path}>
-          <span className="text-  hover:underline text-indigo-800 font-medium	hover:cursor-pointer">
+          <span className="text-  hover:underline text-indigo-600 font-medium	hover:cursor-pointer">
             {props.title}
           </span>
         </Link>
