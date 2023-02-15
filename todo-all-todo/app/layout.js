@@ -7,7 +7,7 @@ import Footer from "../components/footer"
 import '../styles/globals.css'
 import SupabaseListener from '../components/supabase-listener'
 import createClient from '../utils/supabase-server'
-import Login from '../components/login'
+import Login from '../components/Login'
 import NavMenu from '../components/navMenu'
 
 export const revalidate = 0
