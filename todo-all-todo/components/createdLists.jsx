@@ -1,3 +1,5 @@
+import NavLink from './navLink'
+
 export async function fetchItems(limit = "", userId = "") {
   const response = await fetch(
     `${process.env.HOST}/api/lists?limit=${limit}&userId=${userId}`,
@@ -19,13 +21,10 @@ export default async function CreatedLists(props) {
       return (
         <li key={index} className="my-2">
           🗒{" "} {index+1}) 
-          <a
-            className="hover:underline hover:underline-offset-1"
-            href={`/lists/${list.id}`}
-            title={list.title}
+          <NavLink path={`/lists/${list.id}`} title={list.title}
           >
           {list.title}
-          </a>
+          </NavLink>
         </li>
       );
     });
