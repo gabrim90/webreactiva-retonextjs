@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="mt-auto p-4 bg-white dark:bg-gray-900">
+    <footer className="mt-auto p-4 bg-gray-900">
       <div className="mx-auto p-2 w-auto block text-white text-center">
         <p>
           Creado con 🧡 por Gabriel Martínez para{" "}
