@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import createClient from "../utils/supabase-browser";
 
 async function postData(url = "", data = {}) {
-  // Default options are marked with *
-  const response = await fetch(url, {
-    method: "POST", 
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
-  });
-  return response.json(); // parses JSON response into native JavaScript objects
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    if(response.status===200)return response.json();
+    if(response.status>=500) throw new Error("Error en la petición");
+
+
 }
 
 const waitingTextsList = [
@@ -17,7 +19,7 @@ const waitingTextsList = [
   "👵🏼 La paciencia es amarga, pero su fruto es dulce... o algo así decía mi abuela",
   "🤺 Ten fé, pequeño padawan...",
   "🖥 Este tiempo lo ibas a desperdiciar igual delante de la pantalla, así que no te muevas...",
-  "🤨 Ya va, ya va... "
+  "🤨 Ya va, ya va... ",
 ];
 
 export default function SearchForm() {
@@ -29,6 +31,7 @@ export default function SearchForm() {
   const [waitingTextsIndex, setWaitingTextsIndex] = useState(0);
   const [textValidationError, setTextValidationError] = useState(false);
   const [showSavedAlert, setShowSavedAlert] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event) => {
     setInputText(event.target.value);
@@ -74,7 +77,13 @@ export default function SearchForm() {
       setResponseText(data.response);
       setSubmittedLoading(false);
       setWaitingTextsIndex(0);
-    });
+    }).catch((error) => {
+      resetSearchForm();
+      setIsError(true);
+      setTimeout(() => {
+        setIsError(false);
+      },5000)
+    })
   };
 
   const resetSearchForm = () => {
@@ -84,7 +93,7 @@ export default function SearchForm() {
     setIdeasList([]);
     setWaitingTextsIndex(0);
     setInputText("");
-  }
+  };
 
   const handleSaveList = async (event) => {
     // // console.log(`title list: ${titleList}`)
@@ -96,7 +105,7 @@ export default function SearchForm() {
     postData("/api/lists", { list: listData }).then((data) => {
       setShowSavedAlert(true);
       setTimeout(() => {
-        resetSearchForm()
+        resetSearchForm();
       }, 4000);
     });
   };
@@ -133,12 +142,27 @@ export default function SearchForm() {
           className="p-2 m-2 border-2 rounded-md bg-red-400 text-white font-bold disabled:bg-red-100"
           onClick={resetSearchForm}
           disabled={submittedLoading}
-
         >
-          Cancelar
+          Borrar
         </button>
       </div>
-
+      {isError && (
+              <div
+                class="flex items-center bg-red-500 text-white text-sm font-bold px-4 py-3 my-4"
+                role="alert"
+              >
+                <svg
+                  class="fill-current w-4 h-4 mr-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                </svg>
+                <p>
+                  Error en la petición. Inténtalo de nuevo. Puede que el ChatBot esté muy solicitado... 
+                </p>
+              </div>
+            )}
       {submittedLoading && (
         <div className="animate-pulse my-4 px-1 text-lg">
           <p>
