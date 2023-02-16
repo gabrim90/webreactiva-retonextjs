@@ -14,13 +14,6 @@ Se ha creado una pequeña aplicación en la que el ChatGPT te sugiere listas de 
 Para [acceder](https://webreactiva-retonextjs.vercel.app) introducimos un correo y nos llegará un email de acceso. Hacemos click en el enlace y nos cargará la [pantalla principal](https://webreactiva-retonextjs.vercel.app/). En [Crear ToDo](https://webreactiva-retonextjs.vercel.app/create) podemos hacer la consulta al ChatGTP para que nos sugiera lista de tareas. En [Mis listas creadas](https://webreactiva-retonextjs.vercel.app/lists) se pueden ver las listas creadas para el usuario actual. Si hacemos click en una ([ejemplo](https://webreactiva-retonextjs.vercel.app/lists/18)) podemos ver el detalle. En la parte derecha siempre tenemos todas las listas que se han ido creando **por todos los usuarios**.
 
 ## Tecnologías utilizadas
-- React
-- NextJs (versión 13)
+- NextJs (versión 13) & React
 - TailwindCSS
 - Supabase
-
-## Cosas que faltan
-- [ ] Pulir la parte visual
-- [ ] Mejorar el proceso del login y poner el mensaje de que se ha enviado el email de acceso
-- [ ] Poner 
-

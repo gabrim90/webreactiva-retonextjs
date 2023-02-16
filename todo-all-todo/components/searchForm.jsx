@@ -77,6 +77,15 @@ export default function SearchForm() {
     });
   };
 
+  const resetSearchForm = () => {
+    setShowSavedAlert(false);
+    setTextValidationError(false);
+    setSubmittedLoading(false);
+    setIdeasList([]);
+    setWaitingTextsIndex(0);
+    setInputText("");
+  }
+
   const handleSaveList = async (event) => {
     // // console.log(`title list: ${titleList}`)
     const listData = {
@@ -87,12 +96,7 @@ export default function SearchForm() {
     postData("/api/lists", { list: listData }).then((data) => {
       setShowSavedAlert(true);
       setTimeout(() => {
-        setShowSavedAlert(false);
-        setTextValidationError(false);
-        setSubmittedLoading(false);
-        setIdeasList([]);
-        setWaitingTextsIndex(0);
-        setInputText("");
+        resetSearchForm()
       }, 4000);
     });
   };
@@ -107,7 +111,7 @@ export default function SearchForm() {
 
   return (
     <section className="w-full max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-5 py-2">
+      <div className="grid grid-cols-1 sm:grid-cols-6 py-2">
         <input
           type="text"
           placeholder="Escribe aquí tu sugerencia"
@@ -123,6 +127,15 @@ export default function SearchForm() {
           disabled={submittedLoading}
         >
           Enviar
+        </button>
+        <button
+          type="submit"
+          className="p-2 m-2 border-2 rounded-md bg-red-400 text-white font-bold disabled:bg-red-100"
+          onClick={resetSearchForm}
+          disabled={submittedLoading}
+
+        >
+          Cancelar
         </button>
       </div>
 
