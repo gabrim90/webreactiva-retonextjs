@@ -139,7 +139,7 @@ export default function SearchForm() {
         </button>
         <button
           type="submit"
-          className="p-2 m-2 border-2 rounded-md bg-red-400 text-white font-bold disabled:bg-red-100"
+          className="p-2 m-2 border-2 rounded-md bg-red-500 text-white font-bold disabled:bg-red-100"
           onClick={resetSearchForm}
           disabled={submittedLoading}
         >
