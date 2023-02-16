@@ -167,7 +167,7 @@ export default function SearchForm() {
         <div className="animate-pulse my-4 px-1 text-lg">
           <p>
             {" "}
-            🤖 El ChatBotGPT están procesando tu petición para{" "}
+            🤖 El ChatBot están procesando tu petición para{" "}
             <span className="font-bold">{inputText}</span>.{" "}
           </p>
           <p>
