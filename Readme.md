@@ -1,6 +1,5 @@
 # Todo al ToDo (Reto Next JS Web Reactiva)
 
-**Estado**: Me faltan por pulir algunos detalles, pero los requisitos básicos están y es funcional.
 
 ## Acceso y código del reto
 
