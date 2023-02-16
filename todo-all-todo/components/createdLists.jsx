@@ -1,10 +1,20 @@
-import NavLink from './navLink'
+import NavLink from "./navLink";
 
 export async function fetchItems(limit = "", userId = "") {
+  // let fetchOptions = {}
+
+  // if (revalidateRequest) {
+  //   fetchOptions = {
+  //     next: { revalidate: 60 },
+  //   }
+  // }else{
+  //   fetchOptions={ cache: 'no-store' }
+  // }
+
   const response = await fetch(
     `${process.env.HOST}/api/lists?limit=${limit}&userId=${userId}`,
     {
-      next: { revalidate: 60 },
+         next: { revalidate: 20 }
     }
   );
   const data = await response.json();
@@ -20,10 +30,9 @@ export default async function CreatedLists(props) {
     const createdLists = itemsList.map((list, index) => {
       return (
         <li key={index} className="my-2">
-          🗒{" "} {index+1}) 
-          <NavLink path={`/lists/${list.id}`} title={list.title}
-          >
-          {list.title}
+          🗒 {index + 1})
+          <NavLink path={`/lists/${list.id}`} title={list.title}>
+            {list.title}
           </NavLink>
         </li>
       );
